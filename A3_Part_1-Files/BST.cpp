@@ -22,18 +22,25 @@
 /* Constructors and destructor */
 
    // Default constructor
-   BST::BST() { }            
+   BST::BST() { 
+
+   }            
 
    // Copy constructor
    BST::BST(BST & aBST) {
      
 	  // to do
+     /*
+     
+     BSTNode * root = aBST;
+     unsigned int elementCount = 0;
+      */
    }
 
    // Destructor 
    BST::~BST() {
-
-      // to do
+      root = nullptr;
+      elementCount = 0;
    }                
    
    
@@ -77,13 +84,7 @@
    bool BST::insertR(WordPair & anElement, BSTNode * current) { 
     
 	  // to do
-      if(anElement < root->element){
-         insertR(anElement, root->left);
-      }
-      else if(anElement > root->element){
-         insertR(anElement, root->right);
-      }
-      else if(root->right == NULL && root->left == NULL){
+      if(root->isLeaf()){
          if(anElement < root->element){
             root->left->element = anElement;
             return true;
@@ -93,8 +94,14 @@
             return true;
          }
       }
+      else if(anElement < root->element){
+         insertR(anElement, root->left);
+      }
+      else if(anElement > root->element){
+         insertR(anElement, root->right);
+      }
       return false;
-}
+   }
 
    
    // Description: Retrieves "targetElement" from the binary search tree.
@@ -120,8 +127,24 @@
    //         if "targetElement" is not found in the binary search tree.
    WordPair& BST::retrieveR(WordPair & targetElement, BSTNode * current) const {
 
-	  // to do
-		
+   // to do
+      if(targetElement == current->element){
+         return current->element;
+      }
+      else if(targetElement < current->element){
+         if(current->hasLeft()){
+            retrieveR(targetElement,current->left);
+         }
+      }
+      else if(targetElement > current->element){
+         if(current->hasRight()){
+            retrieveR(targetElement,current->right);
+         }
+      }
+      else{
+         throw ElementDoesNotExistException("Element is not found.");
+      }
+      
    } 
          
    
@@ -144,7 +167,10 @@
 
    // Description: Recursive in order traversal of a binary search tree.   
    void BST::traverseInOrderR(void visit(WordPair &), BSTNode* current) const { 
-   
-	  // to do
-	  
+
+      // to do
+      if(root != nullptr){
+         traverseInOrderR(visit,root->left);
+         traverseInOrderR(visit,root->right);
+      }
    }
