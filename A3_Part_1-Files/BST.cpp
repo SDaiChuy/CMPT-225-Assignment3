@@ -77,8 +77,24 @@
    bool BST::insertR(WordPair & anElement, BSTNode * current) { 
     
 	  // to do
-		
-   }
+      if(anElement < root->element){
+         insertR(anElement, root->left);
+      }
+      else if(anElement > root->element){
+         insertR(anElement, root->right);
+      }
+      else if(root->right == NULL && root->left == NULL){
+         if(anElement < root->element){
+            root->left->element = anElement;
+            return true;
+         }
+         else{
+            root->right->element = anElement;
+            return true;
+         }
+      }
+      return false;
+}
 
    
    // Description: Retrieves "targetElement" from the binary search tree.
