@@ -45,8 +45,9 @@ int main(int argc, char *argv[]) {
   string delimiter = ":";
   size_t pos = 0;
   WordPair translated;
- 
-  
+
+
+
   ifstream myfile (filename);
   if (myfile.is_open()) {
      cout << "Reading from a file:" << endl; 
@@ -58,7 +59,17 @@ int main(int argc, char *argv[]) {
         translationW = aLine;
         WordPair aWordPair(englishW, translationW);
         // insert aWordPair into "testing" using a try/catch block
+         try{
+            cout << "testing the BST" << endl;
+            cout << "inserting: " << aWordPair << endl;
+            testing->insert(aWordPair);
+         }
+         catch(ElementAlreadyExistsException){
+            cout << "unable to insert" << endl;
+         }
+     
      }
+
      myfile.close();
 
      // If user entered "Display" at the command line ...

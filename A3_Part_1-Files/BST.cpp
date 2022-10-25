@@ -28,13 +28,8 @@
 
    // Copy constructor
    BST::BST(BST & aBST) {
-     
 	  // to do
-     /*
-     
-     BSTNode * root = aBST;
-     unsigned int elementCount = 0;
-      */
+     BSTNode * root = aBST.root;
    }
 
    // Destructor 
@@ -144,7 +139,7 @@
       else{
          throw ElementDoesNotExistException("Element is not found.");
       }
-      
+
    } 
          
    
@@ -168,7 +163,7 @@
    // Description: Recursive in order traversal of a binary search tree.   
    void BST::traverseInOrderR(void visit(WordPair &), BSTNode* current) const { 
 
-      // to do
+      // to do 
       if(root != nullptr){
          traverseInOrderR(visit,root->left);
          traverseInOrderR(visit,root->right);
