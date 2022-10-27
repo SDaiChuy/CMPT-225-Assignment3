@@ -64,10 +64,9 @@ int main(int argc, char *argv[]) {
             cout << "inserting: " << aWordPair << endl;
             testing->insert(aWordPair);
          }
-         catch(ElementAlreadyExistsException){
-            cout << "unable to insert" << endl;
+         catch(ElementAlreadyExistsException& anException){
+            cout << "unable to insert " << anException.what() << endl;;
          }
-     
      }
 
      myfile.close();
@@ -83,6 +82,14 @@ int main(int argc, char *argv[]) {
            WordPair aWordPair(aWord);
            // retrieve aWordPair from "testing" using a try/catch block
            // print aWordPair
+           try{
+            cout <<  "Testing the BST" << endl;
+            cout <<   "printing out the BST" << endl;
+            testing->retrieve(aWordPair);
+           }
+           catch(EmptyDataCollectionException& anException){
+            cout << "unable to retrieve: " << anException.what() << endl;
+           }
 
         }
      }

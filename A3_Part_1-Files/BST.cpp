@@ -132,16 +132,19 @@
       if(targetElement == current->element){
          return current->element;
       }
+      
       else if(targetElement < current->element){
          if(current->hasLeft()){
             retrieveR(targetElement,current->left);
          }
       }
+
       else if(targetElement > current->element){
          if(current->hasRight()){
             retrieveR(targetElement,current->right);
          }
       }
+      
       else{
          throw ElementDoesNotExistException("Element is not found.");
       }
