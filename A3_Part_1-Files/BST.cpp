@@ -66,7 +66,7 @@
       }
       else {
          if ( !insertR(newElement, root) ) {
-           // cout << "BST:insert( )" << *newElement << " already in BST!" << endl; // For testing purposes
+           //cout << "BST:insert( )" << *newElement << " already in BST!" << endl; // For testing purposes
            throw ElementAlreadyExistsException("Element already exists in the data collection.");
          }
       }
@@ -78,25 +78,31 @@
    //              binary search tree. Otherwise, returns false.
    bool BST::insertR(WordPair & anElement, BSTNode * current) { 
     
-	  // to do
-      if(root->isLeaf()){
-         if(anElement < root->element){
-            root->left->element = anElement;
+      if(anElement < current->element){
+         if(current->left == nullptr){
+            BSTNode*  temp = new BSTNode();
+            current->left = temp;
+            temp->element = anElement;
             return true;
          }
          else{
-            root->right->element = anElement;
-            return true;
+            insertR(anElement, current->left);
          }
       }
-      else if(anElement < root->element){
-         insertR(anElement, root->left);
-      }
-      else if(anElement > root->element){
-         insertR(anElement, root->right);
+      else if(anElement > current->element){
+         if(current->right == nullptr){
+            BSTNode*  temp = new BSTNode();
+            current->right = temp;
+            temp->element = anElement;
+            return true;
+         }
+         else{
+            insertR(anElement, current->right);
+         }
       }
       return false;
    }
+
 
    
    // Description: Retrieves "targetElement" from the binary search tree.
@@ -139,7 +145,7 @@
       else{
          throw ElementDoesNotExistException("Element is not found.");
       }
-
+      return targetElement;
    } 
          
    
