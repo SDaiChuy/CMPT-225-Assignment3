@@ -130,7 +130,8 @@
 
    // to do
       if(targetElement == current->element){
-         return current->element;
+         WordPair* aPair = new WordPair();
+          aPair =  current->element;
       }
       
       else if(targetElement < current->element){
@@ -144,11 +145,10 @@
             retrieveR(targetElement,current->right);
          }
       }
-      
       else{
          throw ElementDoesNotExistException("Element is not found.");
       }
-      return targetElement;
+      return aPair;
    } 
          
    

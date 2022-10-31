@@ -68,12 +68,21 @@ int main(int argc, char *argv[]) {
             cout << "unable to insert " << anException.what() << endl;;
          }
      }
-
      myfile.close();
 
      // If user entered "Display" at the command line ...
      if ( ( argc > 1 ) && ( strcmp(argv[1], "Display") == 0) ) {
-        // ... then display the content of the BST.
+         
+         // ... then display the content of the BST.
+         /*
+         try{
+            cout << "Displaying the contents of the tree in inOrder" << endl;
+            testing->traverseInOrderR();
+         }
+         catch(EmptyDataCollectionException& anException){
+            cout << "unable to display the tree" << endl;
+         }
+         */
      }
      else if (argc == 1) {
         // while user has not entered CTRL+D
@@ -85,7 +94,7 @@ int main(int argc, char *argv[]) {
            try{
             cout <<  "Testing the BST" << endl;
             cout <<   "printing out the BST" << endl;
-            testing->retrieve(aWordPair);
+            cout << "wordPair: " << testing->retrieve(aWordPair) << endl;
            }
            catch(EmptyDataCollectionException& anException){
             cout << "unable to retrieve: " << anException.what() << endl;
@@ -93,6 +102,7 @@ int main(int argc, char *argv[]) {
 
         }
      }
+
   }
   else 
      cout << "Unable to open file"; 
