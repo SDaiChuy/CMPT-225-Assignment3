@@ -23,7 +23,7 @@
 
    // Default constructor
    BST::BST() { 
-
+      root = new BSTNode();
    }            
 
    // Copy constructor
@@ -34,8 +34,7 @@
 
    // Destructor 
    BST::~BST() {
-      root = nullptr;
-      elementCount = 0;
+      delete root;
    }                
    
    
@@ -129,26 +128,21 @@
    WordPair& BST::retrieveR(WordPair & targetElement, BSTNode * current) const {
 
    // to do
-      if(targetElement == current->element){
-         WordPair* aPair = new WordPair();
-          aPair =  current->element;
+   
+      if(current == nullptr){
+         throw EmptyDataCollectionException("Empty search tree");
       }
       
-      else if(targetElement < current->element){
-         if(current->hasLeft()){
-            retrieveR(targetElement,current->left);
-         }
+      if(current->element == targetElement){
+         return current->element;
       }
-
-      else if(targetElement > current->element){
-         if(current->hasRight()){
-            retrieveR(targetElement,current->right);
-         }
+      
+      if(targetElement < current->element){
+         retrieveR(targetElement, current->left);
       }
       else{
-         throw ElementDoesNotExistException("Element is not found.");
+         retrieveR(targetElement, current->right);
       }
-      return aPair;
    } 
          
    
@@ -175,6 +169,7 @@
       // to do 
       if(root != nullptr){
          traverseInOrderR(visit,root->left);
+         visit(current->element);
          traverseInOrderR(visit,root->right);
       }
    }

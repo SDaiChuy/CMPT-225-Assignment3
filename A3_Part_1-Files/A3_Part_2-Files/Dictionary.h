@@ -22,9 +22,6 @@ private:
     BST * keyValuePairs = nullptr;                  
     unsigned int elementCount = 0;
 /* Feel free to add private methods to this class. */
-    void setElementCount(unsigned int count)const;
-    
-    void getElementCount()const;
 public:
 
 /* You cannot change the prototype of the public methods of this class.
